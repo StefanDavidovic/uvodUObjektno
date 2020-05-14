@@ -29,8 +29,8 @@ public class Administrator extends Osoba{
 class test2 {
 	
 	public static void main(String[] args){ 
-		Administrator m = new Administrator(124, "Marko", "Pre", 1234343, "muski", "0342324", "MP", "marko123", 2600);
-		System.out.println(m.toFile());
+		Administrator ma = new Administrator(124, "Marko", "Pre", 1234343, "muski", "0342324", "MP", "marko123", 2600);
+		System.out.println(ma.toFile());
 		
 	}
 }
