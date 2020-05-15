@@ -1,0 +1,3 @@
+111|Marko|Vw|Golf|2012|2000|136|Benzin
+122|Igor|Audi|A4|2008|2000|140|Dizel
+119|Marko|BMW|320|2012|2000|120|Dizel

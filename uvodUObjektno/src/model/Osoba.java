@@ -91,7 +91,6 @@ public class Osoba {
 	
 	}
 
-	@Override
 	public String toString() {
 		return "Osoba [id=" + id + "| ime=" + ime + "| prezime=" + prezime + "| jmbg=" + jmbg + "| pol=" + pol
 				+ "| broj=" + broj + "| korisnickoIme=" + korisnickoIme + "| lozinka=" + lozinka + "]";
