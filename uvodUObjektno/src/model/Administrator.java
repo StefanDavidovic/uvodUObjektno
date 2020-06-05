@@ -9,11 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Administrator extends Osoba{
 	
 	public int plata;
 
-	public Administrator(int id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+	public Administrator(ID id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
 			String lozinka, int plata) {
 		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka);
 		this.plata = plata;
@@ -56,8 +57,8 @@ public class Administrator extends Osoba{
 	public static void unesiAdministratorailUFajl() {
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("Unesite id administratora: ");
-		int id = s.nextInt();
+		ID ide = new ID();
+		String id = ide.generateRandomID(8);
 		System.out.println("Unesite ime: ");
 		String ime= s.next();
 		System.out.println("Unesite prezime: ");
@@ -76,13 +77,13 @@ public class Administrator extends Osoba{
 		int plata = s.nextInt(); 
 		s.hasNextLine();
 		
-		String stariSadrzaj = ucitajIzFajla("administratori.txt");
+		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/administratori.txt");
 		String sadrzaj =  id + "|" + ime + "|" + prezime + "|" +  jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme+ "|" + lozinka + "|" + plata;
 
 		s.close();
 		
 		try {
-			File upisUFajl = new File("administratori.txt");
+			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/administratori.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
 			writer.write(stariSadrzaj + sadrzaj);
 			writer.close();
@@ -96,13 +97,13 @@ public class Administrator extends Osoba{
 	public static void ucitajAdministratore() {
 		ArrayList<Administrator> administratori= new ArrayList<Administrator>();
 		try {
-			File administratoriFile = new File("/home/stefan/git/uvodUObjektno/uvodUObjektno/administratori.txt");
+			File administratoriFile = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/administratori.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(administratoriFile));
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
-				String id = lineSplit[0];
-				int idInt = Integer.parseInt(id);
+				String ide = lineSplit[0];
+				ID id = ID.parse(ide);
 				String ime = lineSplit[1];
 				String prezime = lineSplit[2];
 				String jmbg= lineSplit[3];
@@ -114,7 +115,7 @@ public class Administrator extends Osoba{
 				String plata = lineSplit[8];
 				int plataInt = Integer.parseInt(plata);
 
-				Administrator ad= new Administrator(idInt,ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, plataInt);
+				Administrator ad= new Administrator(id,ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, plataInt);
 				administratori.add(ad);
 				System.out.println(ime + prezime);
 			}

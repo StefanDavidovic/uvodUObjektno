@@ -1,14 +1,22 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Deo {
 	
-	public int id;
-	public String marka;
-	public String model;
+	public ID id;
+	public Automobil marka;
+	public Automobil model;
 	public String naziv;
 	public float cena;
 	
-	public Deo(int id, String marka, String model, String naziv, float cena) {
+	public Deo(ID id, Automobil marka, Automobil model, String naziv, float cena) {
 		this.id = id;
 		this.marka = marka;
 		this.model = model;
@@ -16,25 +24,25 @@ public class Deo {
 		this.cena = cena;
 	}
 	
-	public int getId() {
+	public ID getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(ID id) {
 		this.id = id;
 	}
-	public String getMarka() {
+	public Automobil getMarka() {
 		return marka;
 	}
 
-	public void setMarka(String marka) {
+	public void setMarka(Automobil marka) {
 		this.marka = marka;
 	}
 
-	public String getModel() {
+	public Automobil getModel() {
 		return model;
 	}
 
-	public void setModel(String model) {
+	public void setModel(Automobil model) {
 		this.model = model;
 	}
 
@@ -58,12 +66,63 @@ public class Deo {
 		return id + "|" + marka + "|" + model + "|" + naziv + "|" + cena + "|";
 	}
 	
+	public static String ucitajIzFajla(String fajl) {
+		
+		String sadrzaj = "";
+		File file = new File(fajl);
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String linija;
+			while((linija = br.readLine()) != null) {
+				sadrzaj += linija + "\n";
+			}
+			br.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom citanja datoteke" + fajl);
+			
+		}
+		return sadrzaj;
+	}
+
+		
+		
+	public static void unesiDeolUFajl() {
+		Scanner s = new Scanner(System.in);
+			
+		ID ide = new ID();
+		String id = ide.generateRandomID(8);
+		System.out.println("Unesite marku: ");
+		String marka= s.next();
+		System.out.println("Unesite model: ");
+		String model = s.next();
+		System.out.println("Unesite naziv: ");
+		String naziv= s.next();
+		System.out.println("Unesite cenu: ");
+		Integer cena= s.nextInt();
+
+			
+		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/delovi.txt");
+		String sadrzaj =  id + "|" + marka+ "|" + model + "|" +  naziv + "|" + cena+ "|" ;
+			
+		s.close();
+			
+		try {
+			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/delovi.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
+			writer.write(stariSadrzaj + sadrzaj);
+			writer.close();
+		}catch(IOException e) {
+			System.out.println("Greska!");
+
+		}
+	}
 	
 }
 
 class test5 {
 	public static void main(String[] args){
-		Deo d = new Deo(111, "BMW", "320d", "Amortizer", 2500);
-		System.out.println(d.toFile());
+//		Deo d = new Deo(111, "BMW", "320d", "Amortizer", 2500);
+//		System.out.println(d.toFile());
+		Deo.unesiDeolUFajl();
 	}
 }

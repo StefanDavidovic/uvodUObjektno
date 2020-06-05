@@ -13,7 +13,7 @@ public class Musterija extends Osoba {
 	
 	public int brojBodova;
 
-	public Musterija(int id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+	public Musterija(ID id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
 			String lozinka, int brojBodova) {
 		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka);
 		this.brojBodova = brojBodova;
@@ -62,8 +62,8 @@ public class Musterija extends Osoba {
 	public static void unesiMusterijulUFajl() {
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("Unesite id : ");
-		int id = s.nextInt();
+		ID ide = new ID();
+		String id = ide.generateRandomID(8);
 		System.out.println("Unesite ime: ");
 		String ime= s.next();
 		System.out.println("Unesite prezime: ");
@@ -82,13 +82,13 @@ public class Musterija extends Osoba {
 		int brojBodova = s.nextInt();
 		s.hasNextLine();
 		
-		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektno/uvodUObjektno/src/musterije.txt");
+		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/musterije.txt");
 		String sadrzaj =  id + "|" + ime + "|" + prezime + "|" +  jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme+ "|" + lozinka + "|" + brojBodova;
 		
 		s.close();
 		
 		try {
-			File upisUFajl = new File("/home/stefan/git/uvodUObjektno/uvodUObjektno/src/musterije.txt");
+			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/musterije.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
 			writer.write(stariSadrzaj + sadrzaj);
 			writer.close();
@@ -102,13 +102,13 @@ public class Musterija extends Osoba {
 	public static void ucitajMusterije() {
 		ArrayList<Musterija> musterije= new ArrayList<Musterija>();
 		try {
-			File musterijeFile = new File("/home/stefan/git/uvodUObjektno/uvodUObjektno/musterije.txt");
+			File musterijeFile = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/musterije.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(musterijeFile));
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
-				String id = lineSplit[0];
-				int idInt = Integer.parseInt(id);
+				String ide = lineSplit[0];
+				ID id = ID.parse(ide);
 				String ime = lineSplit[1];
 				String prezime = lineSplit[2];
 				String jmbg= lineSplit[3];
@@ -120,7 +120,7 @@ public class Musterija extends Osoba {
 				String brojBodova = lineSplit[8];
 				int brojBodovaInt = Integer.parseInt(brojBodova);
 
-				Musterija m= new Musterija(idInt,ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, brojBodovaInt);
+				Musterija m= new Musterija(id,ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, brojBodovaInt);
 				musterije.add(m);
 				System.out.println(ime + prezime);
 				
@@ -129,6 +129,10 @@ public class Musterija extends Osoba {
 		} catch (IOException e) {
 			System.out.println("Greska prilikom ucitavanja datoteke: " + e.getMessage());
 		}
+	}
+
+	public static Musterija parse(String vlasnik1) {
+		return null;
 	}
 	
 }

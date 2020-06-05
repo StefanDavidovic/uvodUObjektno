@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Servis {
 	
-	public int id;
+	public ID id;
 	public String termin;
 	public String opis;
 	public List<String> listadelova;
 	public String statusServisa;
 	
-	public Servis(int id, String termin, String opis, List<String> listadelova, String statusServisa) {
+	public Servis(ID id, String termin, String opis, List<String> listadelova, String statusServisa) {
 		this.id = id;
 		this.termin = termin;
 		this.opis = opis;
@@ -19,11 +19,11 @@ public class Servis {
 		this.statusServisa = statusServisa;
 	}
 
-	public int getId() {
+	public ID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(ID id) {
 		this.id = id;
 	}
 

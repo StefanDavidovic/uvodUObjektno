@@ -2,7 +2,7 @@ package model;
 
 public class Osoba {
 	
-	public int id;
+	public ID id;
 	public String ime;
 	public String  prezime;
 	public int jmbg;
@@ -11,7 +11,7 @@ public class Osoba {
 	public String korisnickoIme;
 	public String lozinka;
 	
-	public Osoba(int id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+	public Osoba(ID id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
 			String lozinka) {
 		super();
 		this.id = id;
@@ -26,11 +26,11 @@ public class Osoba {
 		
 	}
 
-	public int getId() {
+	public ID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(ID id) {
 		this.id = id;
 	}
 

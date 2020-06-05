@@ -11,15 +11,15 @@ import java.util.Scanner;
 
 public class Automobil {
 	
-	public int id;
-	public String Vlasnik;
+	public ID id;
+	public Musterija Vlasnik;
 	public String Marka;
 	public String Model;
 	public int Godiste;
 	public int KubikazaMotora;
 	public int SnagaMotora;
 	public String Gorivo;
-	public Automobil(int id, String vlasnik, String marka, String model, int godiste, int kubikazaMotora, int snagaMotora,
+	public Automobil(ID id, Musterija vlasnik, String marka, String model, int godiste, int kubikazaMotora, int snagaMotora,
 			String gorivo) {
 		this.id = id;
 		this.Vlasnik = vlasnik;
@@ -32,16 +32,16 @@ public class Automobil {
 		
 	
 	}
-	public int getId() {
+	public ID getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(ID id) {
 		this.id = id;
 	}
-	public String getvlasnik() {
+	public Musterija getvlasnik() {
 		return Vlasnik;
 	}
-	public void setvlasnik(String vlasnik) {
+	public void setvlasnik(Musterija vlasnik) {
 		this.Vlasnik = vlasnik;
 	}
 	public String getMarka() {
@@ -85,6 +85,12 @@ public class Automobil {
 		return id + "|" + Vlasnik + "|" + Marka + "|" + Model + "|" + Godiste + "|" + KubikazaMotora + "|" + SnagaMotora + "|" + Gorivo + "|";
 	}	
 	
+	enum gorivo {
+		DIZEL, BENZIN, STRUJA;
+	}
+	
+	
+	
 	public static String ucitajIzFajla(String fajl) {
 		
 		String sadrzaj = "";
@@ -109,8 +115,8 @@ public class Automobil {
 	public static void unesiNoviAutomobilUFajl() {
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("Unesite id vozila: ");
-		int id = s.nextInt();
+		ID ide = new ID();
+		String id = ide.generateRandomID(8);
 		System.out.println("Unesite vlasnika vozila: ");
 		String vlasnik = s.next();
 		System.out.println("Unesite marku vozila: ");
@@ -127,13 +133,13 @@ public class Automobil {
 		String gorivo= s.next();
 		s.hasNextLine();
 		
-		String stariSadrzaj = ucitajIzFajla("automobili.txt");
+		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/automobili.txt");
 		String sadrzaj =  id + "|" + vlasnik + "|" + marka + "|" +  model + "|" + godiste + "|" + kubikazaMotora + "|" + snagaMotora + "|" + gorivo;
 
 		s.close();
 		
 		try {
-			File upisUFajl = new File("automobili.txt");
+			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/automobili.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
 			writer.write(stariSadrzaj + sadrzaj);
 			writer.close();
@@ -148,15 +154,16 @@ public class Automobil {
 	public static void ucitajAutomobile() {
 		ArrayList<Automobil> automobili = new ArrayList<Automobil>();
 		try {
-			File automobiliFile = new File("/home/stefan/git/uvodUObjektno/uvodUObjektno/automobili.txt");
+			File automobiliFile = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/automobili.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(automobiliFile));
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
-				String id = lineSplit[0];
-				int idInt = Integer.parseInt(id);
+				String ide = lineSplit[0];
+				ID id = ID.parse(ide);
 				String vlasnik = lineSplit[1];
-				String marka = lineSplit[2];
+				Musterija vlasnik1 = Musterija.parse(vlasnik);
+ 				String marka = lineSplit[2];
 				String model= lineSplit[3];
 				String godiste = lineSplit[4];
 				int godisteInt= Integer.parseInt(godiste);
@@ -166,9 +173,9 @@ public class Automobil {
 				int snagaMotoraInt= Integer.parseInt(snagaMotora);
 				String gorivo = lineSplit[7];
 
-				Automobil a= new Automobil(idInt,vlasnik, marka, model, godisteInt, kubikazaMotoraInt, snagaMotoraInt, gorivo);
+				Automobil a= new Automobil(id,vlasnik1, marka, model, godisteInt, kubikazaMotoraInt, snagaMotoraInt, gorivo);
 				automobili.add(a);
-				System.out.println(idInt + " " + vlasnik);
+				System.out.println(ide + " " + vlasnik);
 				
 			}
 			reader.close();
@@ -184,8 +191,8 @@ public class Automobil {
 class test4 {
 	public static void main(String[] args){
 //		Automobil auto = new Automobil(134,"Marko", "BMW", "320d", 2003, 1400, 99, "Benzin" );
-		Automobil.unesiNoviAutomobilUFajl();
-//		Automobil.ucitajAutomobile();
+//		Automobil.unesiNoviAutomobilUFajl();
+		Automobil.ucitajAutomobile();
 	}
 }
 
