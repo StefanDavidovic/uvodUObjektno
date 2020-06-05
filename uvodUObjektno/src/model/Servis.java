@@ -69,7 +69,7 @@ class test6 {
 		ArrayList<String> listadela = new ArrayList<String>();
 		listadela.add("Branik");
 		listadela.add("Svecice");
-		Servis ser =new Servis(122, "12/12/2012","Zamena", listadela , "U toku" );
-		System.out.println(ser.toFile());
+//		Servis ser =new Servis(122, "12/12/2012","Zamena", listadela , "U toku" );
+//		System.out.println(ser.toFile());
 	}
 }
