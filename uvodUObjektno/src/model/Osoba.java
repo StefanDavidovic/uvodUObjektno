@@ -2,7 +2,7 @@ package model;
 
 public class Osoba {
 	
-	public ID id;
+	public String id;
 	public String ime;
 	public String  prezime;
 	public int jmbg;
@@ -10,9 +10,10 @@ public class Osoba {
 	public String broj;
 	public String korisnickoIme;
 	public String lozinka;
+	public boolean obrisan;
 	
-	public Osoba(ID id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
-			String lozinka) {
+	public Osoba(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+			String lozinka, boolean obrisan) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -22,16 +23,10 @@ public class Osoba {
 		this.broj = broj;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
+		this.obrisan = obrisan;
 		
 		
-	}
-
-	public ID getId() {
-		return id;
-	}
-
-	public void setId(ID id) {
-		this.id = id;
+		
 	}
 
 	public String getIme() {
@@ -42,6 +37,13 @@ public class Osoba {
 		this.ime = ime;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getPrezime() {
 		return prezime;
 	}
@@ -89,6 +91,14 @@ public class Osoba {
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	
+	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	public String toString() {

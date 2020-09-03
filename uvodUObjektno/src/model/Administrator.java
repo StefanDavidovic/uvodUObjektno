@@ -8,18 +8,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 
 public class Administrator extends Osoba{
 	
 	public int plata;
+	public static ArrayList<Administrator> administratori;
+	
 
-	public Administrator(ID id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
-			String lozinka, int plata) {
-		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka);
+	public Administrator(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+			String lozinka, int plata, boolean obrisan ) {
+		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka, obrisan);
 		this.plata = plata;
+		Administrator.administratori = new ArrayList<Administrator>();
+	}
+	
+	public ArrayList<Administrator> getAdministratori() {
+		return administratori;
 	}
 
+	public void dodajAdministratora(Administrator administrator) {
+		Administrator.administratori.add(administrator);
+	}
+		
 	public int getPlata() {
 		return plata;
 	}
@@ -28,112 +40,9 @@ public class Administrator extends Osoba{
 		this.plata = plata;
 	}
 	
-
-	public String toFile() {
-		return id + "|" + ime + "|" + prezime + "|" + jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme + "|" + lozinka + "|" + plata + "|";
+	@Override
+	public String toString() {
+		return id + "|" + ime + "|" + prezime + "|" + jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme + "|" + lozinka + "|" + plata + "|" + obrisan;
 	}
 	
-	public static String ucitajIzFajla(String fajl) {
-		
-		String sadrzaj = "";
-		File file = new File(fajl);
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String linija;
-			while((linija = br.readLine()) != null) {
-				sadrzaj += linija + "\n";
-			}
-			br.close();
-		} catch (IOException e) {
-			System.out.println("Greska prilikom citanja datoteke" + fajl);
-			
-				
-		}
-		return sadrzaj;
-		
-		
-	}
-	
-	public static void unesiAdministratorailUFajl() {
-		Scanner s = new Scanner(System.in);
-		
-		ID ide = new ID();
-		String id = ide.generateRandomID(8);
-		System.out.println("Unesite ime: ");
-		String ime= s.next();
-		System.out.println("Unesite prezime: ");
-		String prezime = s.next();
-		System.out.println("Unesite jmbg: ");
-		int jmbg = s.nextInt();
-		System.out.println("Unesite pol: ");
-		String pol= s.next();
-		System.out.println("Unesite broj: ");
-		String broj = s.next();
-		System.out.println("Unesite korsnicko ime: ");
-		String korisnickoIme= s.next();
-		System.out.println("Unesite lozinku: ");
-		String lozinka= s.next();
-		System.out.println("Unesite platu: ");
-		int plata = s.nextInt(); 
-		s.hasNextLine();
-		
-		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/administratori.txt");
-		String sadrzaj =  id + "|" + ime + "|" + prezime + "|" +  jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme+ "|" + lozinka + "|" + plata;
-
-		s.close();
-		
-		try {
-			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/administratori.txt");
-			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
-			writer.write(stariSadrzaj + sadrzaj);
-			writer.close();
-		}
-		catch(IOException e) {
-			System.out.println("Greska!");
-
-		}
-	}
-	
-	public static void ucitajAdministratore() {
-		ArrayList<Administrator> administratori= new ArrayList<Administrator>();
-		try {
-			File administratoriFile = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/administratori.txt");
-			BufferedReader reader = new BufferedReader(new FileReader(administratoriFile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] lineSplit = line.split("\\|");
-				String ide = lineSplit[0];
-				ID id = ID.parse(ide);
-				String ime = lineSplit[1];
-				String prezime = lineSplit[2];
-				String jmbg= lineSplit[3];
-				int jmbgInt = Integer.parseInt(jmbg);
-				String pol = lineSplit[4];
-				String broj= lineSplit[5];
-				String korisnickoIme= lineSplit[6];
-				String lozinka= lineSplit[7];
-				String plata = lineSplit[8];
-				int plataInt = Integer.parseInt(plata);
-
-				Administrator ad= new Administrator(id,ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, plataInt);
-				administratori.add(ad);
-				System.out.println(ime + prezime);
-			}
-			reader.close();
-		} catch (IOException e) {
-			System.out.println("Greska prilikom ucitavanja datoteke: " + e.getMessage());
-		}
-	}
-	
-	
-}
-
-class test2 {
-	
-	public static void main(String[] args){ 
-//		Administrator ma = new Administrator(124, "Marko", "Pre", 1234343, "muski", "0342324", "MP", "marko123", 2600);
-//		System.out.println(ma.toFile());
-		Administrator.unesiAdministratorailUFajl();
-		Administrator.ucitajAdministratore();
-	}
 }

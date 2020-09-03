@@ -1,1 +1,3 @@
-111|Marko|Zivkovic|123456789|Musko|12345231|mare123|mare123|450000
+111|Marko|Zivkovic|123456789|Musko|12345231|mare123|mare123|450000|0
+451KQjXD|Predrag|Manojlovc|12345321|Musko|03332132|peki123|peki123|40000|0
+00615994|Ivan|Jankovic|1112221112|Musko|1234232|ivan1|ivan1|5600|0

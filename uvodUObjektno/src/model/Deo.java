@@ -7,16 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Deo {
 	
-	public ID id;
+	public String id;
 	public Automobil marka;
 	public Automobil model;
 	public String naziv;
 	public float cena;
 	
-	public Deo(ID id, Automobil marka, Automobil model, String naziv, float cena) {
+	public Deo(String id, Automobil marka, Automobil model, String naziv, float cena) {
 		this.id = id;
 		this.marka = marka;
 		this.model = model;
@@ -24,10 +25,10 @@ public class Deo {
 		this.cena = cena;
 	}
 	
-	public ID getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(ID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Automobil getMarka() {
@@ -88,9 +89,8 @@ public class Deo {
 		
 	public static void unesiDeolUFajl() {
 		Scanner s = new Scanner(System.in);
-			
-		ID ide = new ID();
-		String id = ide.generateRandomID(8);
+		
+		String id = UUID.randomUUID().toString();
 		System.out.println("Unesite marku: ");
 		String marka= s.next();
 		System.out.println("Unesite model: ");

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Servis {
 	
-	public ID id;
+	public String id;
 	public String termin;
 	public String opis;
-	public List<String> listadelova;
+	public ArrayList<Deo> listadelova;
 	public String statusServisa;
 	
-	public Servis(ID id, String termin, String opis, List<String> listadelova, String statusServisa) {
+	public Servis(String id, String termin, String opis, ArrayList<Deo> listadelova, String statusServisa) {
 		this.id = id;
 		this.termin = termin;
 		this.opis = opis;
@@ -19,11 +19,11 @@ public class Servis {
 		this.statusServisa = statusServisa;
 	}
 
-	public ID getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(ID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -43,11 +43,11 @@ public class Servis {
 		this.opis = opis;
 	}
 
-	public List<String> getListadelova() {
+	public ArrayList<Deo> getListadelova() {
 		return listadelova;
 	}
 
-	public void setListadelova(List<String> listadelova) {
+	public void setListadelova(ArrayList<Deo> listadelova) {
 		this.listadelova = listadelova;
 	}
 
@@ -64,12 +64,3 @@ public class Servis {
 	}
 }
 
-class test6 {
-	public static void main(String[] args){
-		ArrayList<String> listadela = new ArrayList<String>();
-		listadela.add("Branik");
-		listadela.add("Svecice");
-//		Servis ser =new Servis(122, "12/12/2012","Zamena", listadela , "U toku" );
-//		System.out.println(ser.toFile());
-	}
-}

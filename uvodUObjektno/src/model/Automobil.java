@@ -8,10 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Automobil {
 	
-	public ID id;
+	public String id;
 	public Musterija Vlasnik;
 	public String Marka;
 	public String Model;
@@ -19,7 +20,7 @@ public class Automobil {
 	public int KubikazaMotora;
 	public int SnagaMotora;
 	public String Gorivo;
-	public Automobil(ID id, Musterija vlasnik, String marka, String model, int godiste, int kubikazaMotora, int snagaMotora,
+	public Automobil(String id, Musterija vlasnik, String marka, String model, int godiste, int kubikazaMotora, int snagaMotora,
 			String gorivo) {
 		this.id = id;
 		this.Vlasnik = vlasnik;
@@ -32,10 +33,10 @@ public class Automobil {
 		
 	
 	}
-	public ID getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(ID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Musterija getvlasnik() {
@@ -115,8 +116,7 @@ public class Automobil {
 	public static void unesiNoviAutomobilUFajl() {
 		Scanner s = new Scanner(System.in);
 		
-		ID ide = new ID();
-		String id = ide.generateRandomID(8);
+		String id = UUID.randomUUID().toString();
 		System.out.println("Unesite vlasnika vozila: ");
 		String vlasnik = s.next();
 		System.out.println("Unesite marku vozila: ");
@@ -159,8 +159,7 @@ public class Automobil {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
-				String ide = lineSplit[0];
-				ID id = ID.parse(ide);
+				String id = lineSplit[0];
 				String vlasnik = lineSplit[1];
 				Musterija vlasnik1 = Musterija.parse(vlasnik);
  				String marka = lineSplit[2];
@@ -175,7 +174,7 @@ public class Automobil {
 
 				Automobil a= new Automobil(id,vlasnik1, marka, model, godisteInt, kubikazaMotoraInt, snagaMotoraInt, gorivo);
 				automobili.add(a);
-				System.out.println(ide + " " + vlasnik);
+				System.out.println(id + " " + vlasnik);
 				
 			}
 			reader.close();
@@ -185,16 +184,4 @@ public class Automobil {
 	}
 		
 }
-
-
-
-class test4 {
-	public static void main(String[] args){
-//		Automobil auto = new Automobil(134,"Marko", "BMW", "320d", 2003, 1400, 99, "Benzin" );
-//		Automobil.unesiNoviAutomobilUFajl();
-		Automobil.ucitajAutomobile();
-	}
-}
-
-
 

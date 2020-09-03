@@ -8,14 +8,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Musterija extends Osoba {
 	
 	public int brojBodova;
 
-	public Musterija(ID id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
-			String lozinka, int brojBodova) {
-		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka);
+	public Musterija(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+			String lozinka, int brojBodova, boolean obrisan) {
+		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka, obrisan);
 		this.brojBodova = brojBodova;
 	}
 
@@ -30,123 +31,12 @@ public class Musterija extends Osoba {
 
 	public String toString() {
 		return "Musterija [id=" + id + "|ime=" + ime + "|prezime=" + prezime + "|jmbg=" + jmbg + "|pol=" + pol 
-								+ "|broj=" + broj + "|korisnickoIme=" + korisnickoIme + "|lozinka=" + lozinka + "|brojBodova=" + brojBodova + "]";
+								+ "|broj=" + broj + "|korisnickoIme=" + korisnickoIme + "|lozinka=" + lozinka + "|brojBodova=" + brojBodova + "]" + obrisan;
 		
 	}
 	
 	public String toFile() {
-		return id + "|" + ime + "|" + prezime + "|" + jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme + "|" + lozinka + "|" + brojBodova + "|";
-	}
-	
-	public static String ucitajIzFajla(String fajl) {
-		
-		String sadrzaj = "";
-		File file = new File(fajl);
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String linija;
-			while((linija = br.readLine()) != null) {
-				sadrzaj += linija + "\n";
-			}
-			br.close();
-		} catch (IOException e) {
-			System.out.println("Greska prilikom citanja datoteke" + fajl);
-			
-				
-		}
-		return sadrzaj;
-		
-		
-	}
-	
-	public static void unesiMusterijulUFajl() {
-		Scanner s = new Scanner(System.in);
-		
-		ID ide = new ID();
-		String id = ide.generateRandomID(8);
-		System.out.println("Unesite ime: ");
-		String ime= s.next();
-		System.out.println("Unesite prezime: ");
-		String prezime = s.next();
-		System.out.println("Unesite jmbg: ");
-		String jmbg= s.next();
-		System.out.println("Unesite pol: ");
-		String pol= s.next();
-		System.out.println("Unesite broj: ");
-		String broj = s.next();
-		System.out.println("Unesite korsnicko ime: ");
-		String korisnickoIme= s.next();
-		System.out.println("Unesite lozinku: ");
-		String lozinka= s.next();
-		System.out.println("Unesite broj bodova: ");
-		int brojBodova = s.nextInt();
-		s.hasNextLine();
-		
-		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/musterije.txt");
-		String sadrzaj =  id + "|" + ime + "|" + prezime + "|" +  jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme+ "|" + lozinka + "|" + brojBodova;
-		
-		s.close();
-		
-		try {
-			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/musterije.txt");
-			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
-			writer.write(stariSadrzaj + sadrzaj);
-			writer.close();
-		}
-		catch(IOException e) {
-			System.out.println("Greska!");
-
-		}
-	}
-	
-	public static void ucitajMusterije() {
-		ArrayList<Musterija> musterije= new ArrayList<Musterija>();
-		try {
-			File musterijeFile = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/musterije.txt");
-			BufferedReader reader = new BufferedReader(new FileReader(musterijeFile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] lineSplit = line.split("\\|");
-				String ide = lineSplit[0];
-				ID id = ID.parse(ide);
-				String ime = lineSplit[1];
-				String prezime = lineSplit[2];
-				String jmbg= lineSplit[3];
-				int jmbgInt = Integer.parseInt(jmbg);
-				String pol = lineSplit[4];
-				String broj= lineSplit[5];
-				String korisnickoIme= lineSplit[6];
-				String lozinka= lineSplit[7];
-				String brojBodova = lineSplit[8];
-				int brojBodovaInt = Integer.parseInt(brojBodova);
-
-				Musterija m= new Musterija(id,ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, brojBodovaInt);
-				musterije.add(m);
-				System.out.println(ime + prezime);
-				
-			}
-			reader.close();
-		} catch (IOException e) {
-			System.out.println("Greska prilikom ucitavanja datoteke: " + e.getMessage());
-		}
-	}
-
-	public static Musterija parse(String vlasnik1) {
-		return null;
+		return id + "|" + ime + "|" + prezime + "|" + jmbg + "|" + pol + "|" + broj + "|" + korisnickoIme + "|" + lozinka + "|" + brojBodova + "|" + obrisan;
 	}
 	
 }
-
-
-class test1 {
-	
-	public static void main(String[] args){ 
-//		Musterija mu = new Musterija(123, "Marko", "Pre", 1234343, "muski", "0342324", "MP", "marko123", 3);
-//		System.out.println(mu);
-//		System.out.println(mu.toFile());
-//		Musterija.unesiMusterijulUFajl();
-		Musterija.ucitajMusterije();
-		
-		}
-}
-		
