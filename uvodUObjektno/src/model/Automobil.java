@@ -6,9 +6,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
+import component.Korisnici;
 
 public class Automobil {
 	
@@ -160,8 +162,10 @@ public class Automobil {
 			while ((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
 				String id = lineSplit[0];
-				String vlasnik = lineSplit[1];
-				Musterija vlasnik1 = Musterija.parse(vlasnik);
+				String vlasnikID = lineSplit[1];
+				Korisnici k = new Korisnici();
+				Musterija vlasnik = k.nadjiMusterijuPoID(vlasnikID);
+//				Musterija vlasnik1 = Musterija.parse(vlasnik);
  				String marka = lineSplit[2];
 				String model= lineSplit[3];
 				String godiste = lineSplit[4];
@@ -172,7 +176,7 @@ public class Automobil {
 				int snagaMotoraInt= Integer.parseInt(snagaMotora);
 				String gorivo = lineSplit[7];
 
-				Automobil a= new Automobil(id,vlasnik1, marka, model, godisteInt, kubikazaMotoraInt, snagaMotoraInt, gorivo);
+				Automobil a= new Automobil(id,vlasnik, marka, model, godisteInt, kubikazaMotoraInt, snagaMotoraInt, gorivo);
 				automobili.add(a);
 				System.out.println(id + " " + vlasnik);
 				
@@ -182,6 +186,8 @@ public class Automobil {
 			System.out.println("Greska prilikom ucitavanja datoteke: " + e.getMessage());
 		}
 	}
+	
+
 		
 }
 

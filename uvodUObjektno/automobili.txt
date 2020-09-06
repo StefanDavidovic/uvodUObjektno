@@ -1,5 +1,0 @@
-111|Marko|Vw|Golf|2012|2000|136|Benzin
-122|Igor|Audi|A4|2008|2000|140|Dizel
-119|Marko|BMW|320|2012|2000|120|Dizel
-Kf9ehts9|Predrad|VW|Golf|2012|1400|130|Benzin
-rZV9Cqsy|Milan|Porsche|Carrera|2019|4200|450|Benzin
