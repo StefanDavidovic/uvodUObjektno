@@ -17,6 +17,7 @@ public class ServisAutomobilaMain {
 
 	public static void main(String[] args) {
 		
+		
 		Korisnici korisnici = new Korisnici();
 		Automobili automobili = new Automobili();
 		korisnici.ucitajAdministratore();

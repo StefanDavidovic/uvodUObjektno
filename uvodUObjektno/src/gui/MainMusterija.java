@@ -5,6 +5,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import component.Korisnici;
+import model.Musterija;
 import model.Osoba;
 import model.Servis;
 
@@ -14,14 +16,14 @@ public class MainMusterija extends JFrame {
 	private JMenu servisiMenu = new JMenu("Servisi");
 	private JMenu automobiliMenu = new JMenu("Automobili");
 	
-	private Osoba prijavljeni;
-	private Servis servis;
+	private Korisnici korisnici;
+	private Musterija musterija;
 	
 	
-	public MainMusterija(Osoba prijavljeni, Servis servis) {
-		this.prijavljeni = prijavljeni;
-		this.servis = servis;
-		setTitle("Prijavljeni korisnik: " + prijavljeni.getKorisnickoIme());
+	public MainMusterija(Korisnici korisnici, Musterija musterija) {
+		this.korisnici = korisnici;
+		this.musterija = musterija;
+		setTitle("Prijavljeni korisnik: " + musterija.getKorisnickoIme());
 		setSize(500, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -35,5 +37,6 @@ public class MainMusterija extends JFrame {
 		mainMenu.add(servisiMenu);
 		mainMenu.add(automobiliMenu);
 	}
-
+	
+	
 }

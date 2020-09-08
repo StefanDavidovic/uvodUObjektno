@@ -1,2 +1,4 @@
-112|Milica|Petrovic|1234532134|Zensko|2334431|milica123|milica123|1|false
-122|Milica|Petrovic|1234532134|Zensko|2334431|milica123|milica123|1|false
+112|Milica|Petrovic|1234532134|1|2334431|milica123|milica1231|0|true
+122|Milica|Petrovic|1234532134|0|2334431|milica123|milica1231|0|false
+111|Ivana|Bojic|2143241224|0|32412412|iva123|iva1232|0|false
+131|Marko|Pletikosic|5323124|1|1234234|marko123|marko123|0|false

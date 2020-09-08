@@ -6,13 +6,18 @@ public class Osoba {
 	public String ime;
 	public String  prezime;
 	public int jmbg;
-	public String pol;
+	public Pol pol;
 	public String broj;
 	public String korisnickoIme;
 	public String lozinka;
 	public boolean obrisan;
 	
-	public Osoba(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+	public Osoba() {
+		this.obrisan = false;
+	}
+	
+	
+	public Osoba(String id, String ime, String prezime, int jmbg, Pol pol, String broj, String korisnickoIme,
 			String lozinka, boolean obrisan) {
 		super();
 		this.id = id;
@@ -60,11 +65,11 @@ public class Osoba {
 		this.jmbg = jmbg;
 	}
 
-	public String getPol() {
+	public Pol getPol() {
 		return pol;
 	}
 
-	public void setPol(String pol) {
+	public void setPol(Pol pol) {
 		this.pol = pol;
 	}
 

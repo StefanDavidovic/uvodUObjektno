@@ -14,9 +14,9 @@ public class Musterija extends Osoba {
 	
 	public int brojBodova;
 
-	public Musterija(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
+	public Musterija(String id, String ime, String prezime, int jmbg, Pol pol, String broj, String korisnickoIme,
 			String lozinka, int brojBodova, boolean obrisan) {
-		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka, obrisan);
+		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka , obrisan);
 		this.brojBodova = brojBodova;
 	}
 
@@ -31,7 +31,7 @@ public class Musterija extends Osoba {
 
 	public String toString() {
 		return "Musterija [id=" + id + "|ime=" + ime + "|prezime=" + prezime + "|jmbg=" + jmbg + "|pol=" + pol 
-								+ "|broj=" + broj + "|korisnickoIme=" + korisnickoIme + "|lozinka=" + lozinka + "|brojBodova=" + brojBodova + "]" + obrisan;
+								+ "|broj=" + broj + "|korisnickoIme=" + korisnickoIme + "|lozinka=" + lozinka + "|brojBodova=" + brojBodova + "|obrisan=" + obrisan + "]";
 		
 	}
 	

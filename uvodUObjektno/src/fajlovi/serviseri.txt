@@ -1,1 +1,3 @@
-116|Mirko|Popovic|1233467124|Musko|12344532|mire123|mire123|50000|Automehanicar|false
+116|Mirko|Popovic|1233467124|1|12344532|mire123|mire123|50000.0|1|false
+111|Ivan|Milosevic|53242124|1|5645332|ivko123|ivko123|33000.0|0|true
+121|Miko|Ristanovic|444331113|1|5544332|miko123|miko123|54000.0|1|false

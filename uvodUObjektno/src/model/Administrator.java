@@ -13,20 +13,20 @@ import java.util.UUID;
 
 public class Administrator extends Osoba{
 	
-	public int plata;
+	public double plata;
 	
 
-	public Administrator(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
-			String lozinka, int plata, boolean obrisan ) {
-		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka, obrisan);
+	public Administrator(String id, String ime, String prezime, int jmbg, Pol pol, String broj, String korisnickoIme,
+			String lozinka, double plata, boolean obrisan ) {
+		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka , obrisan);
 		this.plata = plata;
 	}
 	
-	public int getPlata() {
+	public double getPlata() {
 		return plata;
 	}
 
-	public void setPlata(int plata) {
+	public void setPlata(double plata) {
 		this.plata = plata;
 	}
 	

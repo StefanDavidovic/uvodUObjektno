@@ -1,3 +1,6 @@
-111|Marko|Zivkovic|123456789|Musko|12345231|mare123|mare123|450000|0
-451KQjXD|Predrag|Manojlovc|12345321|Musko|03332132|peki123|peki123|40000|0
-00615994|Ivan|Jankovic|1112221112|Musko|1234232|ivan1|ivan1|5600|0
+111|Marko|Manojlovc|123456789|1|845681536|mare123|mare123|700000.0|false
+451KQjXD|Predrag|Manojlovc|12345321|1|03332132|peki123|peki123|40000.7|false
+00615994|Ivan|Jankovic|1112221112|1|4534573472|ivan1|ivan1|60000.0|false
+1111|Ivana|Ivanovic|1243523249|0|43252153|ivana123|ivana123|45000.0|false
+2121|Milan|Zivojinovic|124342312|1|Zivojinovic|milan123|milan123|50000.0|false
+12311|Matija|Stojanovic|1111222|1|123243|matija123|matija123|30000.0|false

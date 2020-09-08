@@ -9,9 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Administrator;
+import model.Automobil;
 import model.Musterija;
 import model.Osoba;
+import model.Pol;
 import model.Serviser;
+import model.ServiserSpecijalizacija;
 
 public class Korisnici {
 
@@ -50,19 +53,29 @@ public class Korisnici {
 	public void dodajServisera(Serviser serviser) {
 		this.serviseri.add(serviser);
 	}
+	
+	public void obrisiServisera(Serviser serviser) {
+		this.serviseri.remove(serviser);
+	}
+	
+	public void obrisiAdmina(Administrator administrator) {
+		this.administratori.remove(administrator);
+	}
+	
+	public void obrisiMusteriju(Musterija musterija) {
+		this.musterije.remove(musterija);
+	}
 
 	public Osoba loginKorisnika(String korisnickoIme, String lozinka) {
 		for (Administrator administrator : administratori) {
 			if (administrator.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)
 					&& administrator.getLozinka().equals(lozinka) && !administrator.isObrisan()) {
-				System.out.println("ADMIN");
 				return administrator;
 			}
 		}
 		for (Musterija musterija : musterije) {
 			if (musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && musterija.getLozinka().equals(lozinka)
 					&& !musterija.isObrisan()) {
-				System.out.println("Musterija");
 				return musterija;
 			}
 		}
@@ -88,19 +101,19 @@ public class Korisnici {
 				String prezime = lineSplit[2];
 				String jmbg = lineSplit[3];
 				int jmbgInt = Integer.parseInt(jmbg);
-				String pol = lineSplit[4];
+				int polInt = Integer.parseInt(lineSplit[4]);
+				Pol pol = Pol.values()[polInt];
 				String broj = lineSplit[5];
 				String korisnickoIme = lineSplit[6];
 				String lozinka = lineSplit[7];
 				String plata = lineSplit[8];
-				int plataInt = Integer.parseInt(plata);
+				double plataInt = Double.parseDouble(plata);
 				String obrisanBool = lineSplit[9];
 				boolean obrisan = Boolean.parseBoolean(obrisanBool);
 
 				Administrator ad = new Administrator(id, ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka,
 						plataInt, obrisan);
 				administratori.add(ad);
-				System.out.println(id + ime + prezime);
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -120,7 +133,8 @@ public class Korisnici {
 				String prezime = lineSplit[2];
 				String jmbg = lineSplit[3];
 				int jmbgInt = Integer.parseInt(jmbg);
-				String pol = lineSplit[4];
+				int polInt = Integer.parseInt(lineSplit[4]);
+				Pol pol = Pol.values()[polInt];
 				String broj = lineSplit[5];
 				String korisnickoIme = lineSplit[6];
 				String lozinka = lineSplit[7];
@@ -153,20 +167,20 @@ public class Korisnici {
 				String ime = lineSplit[1];
 				String prezime = lineSplit[2];
 				String jmbg = lineSplit[3];
-				String pol = lineSplit[4];
+				int jmbgInt = Integer.parseInt(jmbg);
+				int polInt = Integer.parseInt(lineSplit[4]);
+				Pol pol = Pol.values()[polInt];
 				String broj = lineSplit[5];
 				String korisnickoIme = lineSplit[6];
 				String lozinka = lineSplit[7];
 				String plata = lineSplit[8];
-				String specijalizacija = lineSplit[9];
+				double plataDouble = Double.parseDouble(plata);
+				int specijalizacijaInt = Integer.parseInt(lineSplit[9]);
+				ServiserSpecijalizacija specijalizacija = ServiserSpecijalizacija.values()[specijalizacijaInt];
 				String obrisanStr = lineSplit[10];
-
-				int jmbgInt = Integer.parseInt(jmbg);
-				int plataInt = Integer.parseInt(plata);
-
 				boolean obrisan = Boolean.parseBoolean(obrisanStr);
 
-				Serviser se = new Serviser(id, ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, plataInt,
+				Serviser se = new Serviser(id, ime, prezime, jmbgInt, pol, broj, korisnickoIme, lozinka, plataDouble,
 						specijalizacija, obrisan);
 				serviseri.add(se);
 
@@ -181,7 +195,6 @@ public class Korisnici {
 		for (Musterija musterija : musterije) {
 
 			if (musterija.getId().equals(id)) {
-				System.out.println(musterija);
 				return musterija;
 			}
 		}
@@ -218,14 +231,14 @@ public class Korisnici {
 		return neobrisani;
 	}
 
-	public void snimiAdmine(String imeFajla) {
+	public void snimiAdmine() {
 		try {
 			File file = new File("src/fajlovi/administratori.txt");
 			String sadrzaj = "";
 			for (Administrator administrator : administratori) {
 				sadrzaj += administrator.getId() + "|" + administrator.getIme() + "|" + administrator.getPrezime() + "|"
-						+ administrator.getJmbg() + "|" + administrator.getPol() + "|" + administrator.getBroj() + "|"
-						+ administrator.getKorisnickoIme() + administrator.getLozinka() + "|" + administrator.getPlata()
+						+ administrator.getJmbg() + "|" + administrator.getPol().ordinal() + "|" + administrator.getBroj() + "|"
+						+ administrator.getKorisnickoIme() + "|" + administrator.getLozinka() + "|" + administrator.getPlata()
 						+ "|" + administrator.isObrisan() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -236,14 +249,14 @@ public class Korisnici {
 		}
 	}
 
-	public void snimiMusterije(String imeFajla) {
+	public void snimiMusterije() {
 		try {
 			File file = new File("src/fajlovi/musterije.txt");
 			String sadrzaj = "";
 			for (Musterija musterija : musterije) {
 				sadrzaj += musterija.getId() + "|" + musterija.getIme() + "|" + musterija.getPrezime() + "|"
-						+ musterija.getJmbg() + "|" + musterija.getPol() + "|" + musterija.getBroj() + "|"
-						+ musterija.getKorisnickoIme() + musterija.getLozinka() + musterija.getBrojBodova() + "|" + musterija.isObrisan() + "\n";
+						+ musterija.getJmbg() + "|" + musterija.getPol().ordinal() + "|" + musterija.getBroj() + "|"
+						+ musterija.getKorisnickoIme() + "|" +  musterija.getLozinka() + "|" + musterija.getBrojBodova() + "|" + musterija.isObrisan() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(sadrzaj);
@@ -253,14 +266,14 @@ public class Korisnici {
 		}
 	}
 	
-	public void snimiServisere(String imeFajla) {
+	public void snimiServisere() {
 		try {
 			File file = new File("src/fajlovi/serviseri.txt");
 			String sadrzaj = "";
 			for (Serviser serviser : serviseri) {
 				sadrzaj += serviser.getId() + "|" + serviser.getIme() + "|" + serviser.getPrezime() + "|"
-						+ serviser.getJmbg() + "|" + serviser.getPol() + "|" + serviser.getBroj() + "|"
-						+ serviser.getKorisnickoIme() + serviser.getLozinka() + serviser.getSpecijalizacija() + "|" + serviser.getPlata() + "|" + serviser.isObrisan() + "\n";
+						+ serviser.getJmbg() + "|" + serviser.getPol().ordinal() + "|" + serviser.getBroj() + "|"
+						+ serviser.getKorisnickoIme() + "|" + serviser.getLozinka() + "|" + + serviser.getPlata() + "|" + serviser.getSpecijalizacija().ordinal() + "|" + serviser.isObrisan() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(sadrzaj);
@@ -268,6 +281,60 @@ public class Korisnici {
 		} catch (IOException e) {
 			System.out.println("Greska prilikom snimanja servisera.");
 		}
+	}
+	
+	public Serviser pronadjiServisera(String id) {
+		for (Serviser serviser : serviseri) {
+				if(serviser.getId().equals(id)) {
+					return serviser;
+				}
+			}
+		return null;
+	}
+	
+	public Administrator pronadjiAdmina(String id) {
+		for (Administrator administrator : administratori) {
+				if(administrator.getId().equals(id)) {
+					return administrator;
+				}
+			}
+		return null;
+	}
+	
+	public Musterija pronadjiMusteriju(String id) {
+		for (Musterija musterija : musterije) {
+				if(musterija.getId().equals(id)) {
+					return musterija;
+				}
+			}
+		return null;
+	}
+	
+	public Musterija nadjiMusteriju(String korisnickoIme) {
+		for (Musterija musterija : musterije ) {
+			if (musterija.getKorisnickoIme().equals(korisnickoIme)) {
+				return musterija;
+			}
+		}
+		return null;
+	}
+	
+	public Administrator nadjiAdmina(String korisnickoIme) {
+		for (Administrator administrator : administratori ) {
+			if (administrator.getKorisnickoIme().equals(korisnickoIme)) {
+				return administrator;
+			}
+		}
+		return null;
+	}
+	
+	public Serviser nadjiServisera(String korisnickoIme) {
+		for (Serviser serviser : serviseri ) {
+			if (serviser.getKorisnickoIme().equals(korisnickoIme)) {
+				return serviser;
+			}
+		}
+		return null;
 	}
 
 }

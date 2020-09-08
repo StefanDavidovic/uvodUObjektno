@@ -16,14 +16,15 @@ public class Automobil {
 	
 	public String id;
 	public Musterija Vlasnik;
-	public String Marka;
-	public String Model;
+	public MarkaAutomobila Marka;
+	public ModelAutomobila Model;
 	public int Godiste;
 	public int KubikazaMotora;
 	public int SnagaMotora;
-	public String Gorivo;
-	public Automobil(String id, Musterija vlasnik, String marka, String model, int godiste, int kubikazaMotora, int snagaMotora,
-			String gorivo) {
+	public Gorivo Gorivo;
+	public boolean obrisan;
+	public Automobil(String id, Musterija vlasnik, MarkaAutomobila marka, ModelAutomobila model, int godiste, int kubikazaMotora, int snagaMotora,
+			Gorivo gorivo, boolean obrisan) {
 		this.id = id;
 		this.Vlasnik = vlasnik;
 		this.Marka = marka;
@@ -32,6 +33,7 @@ public class Automobil {
 		this.KubikazaMotora = kubikazaMotora;
 		this.SnagaMotora = snagaMotora;
 		this.Gorivo = gorivo;
+		this.obrisan = obrisan;
 		
 	
 	}
@@ -47,16 +49,16 @@ public class Automobil {
 	public void setvlasnik(Musterija vlasnik) {
 		this.Vlasnik = vlasnik;
 	}
-	public String getMarka() {
+	public MarkaAutomobila getMarka() {
 		return Marka;
 	}
-	public void setMarka(String marka) {
+	public void setMarka(MarkaAutomobila marka) {
 		Marka = marka;
 	}
-	public String getModel() {
+	public ModelAutomobila getModel() {
 		return Model;
 	}
-	public void setModel(String model) {
+	public void setModel(ModelAutomobila model) {
 		Model = model;
 	}
 	public int getGodiste() {
@@ -77,117 +79,24 @@ public class Automobil {
 	public void setSnagaMotora(int snagaMotora) {
 		SnagaMotora = snagaMotora;
 	}
-	public String getGorivo() {
+	public Gorivo getGorivo() {
 		return Gorivo;
 	}
-	public void setGorivo(String gorivo) {
+	public void setGorivo(Gorivo gorivo) {
 		this.Gorivo = gorivo;
 	}
 	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+	
 	public String toFile() {
-		return id + "|" + Vlasnik + "|" + Marka + "|" + Model + "|" + Godiste + "|" + KubikazaMotora + "|" + SnagaMotora + "|" + Gorivo + "|";
+		return id + "|" + Vlasnik + "|" + Marka + "|" + Model + "|" + Godiste + "|" + KubikazaMotora + "|" + SnagaMotora + "|" + Gorivo + "|" + obrisan;
 	}	
 	
-	enum gorivo {
-		DIZEL, BENZIN, STRUJA;
-	}
-	
-	
-	
-	public static String ucitajIzFajla(String fajl) {
-		
-		String sadrzaj = "";
-		File file = new File(fajl);
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String linija;
-			while((linija = br.readLine()) != null) {
-				sadrzaj += linija + "\n";
-			}
-			br.close();
-		} catch (IOException e) {
-			System.out.println("Greska prilikom citanja datoteke" + fajl);
-			
-				
-		}
-		return sadrzaj;
-		
-		
-	}
-	
-	public static void unesiNoviAutomobilUFajl() {
-		Scanner s = new Scanner(System.in);
-		
-		String id = UUID.randomUUID().toString();
-		System.out.println("Unesite vlasnika vozila: ");
-		String vlasnik = s.next();
-		System.out.println("Unesite marku vozila: ");
-		String marka = s.next();
-		System.out.println("Unesite model vozila: ");
-		String model = s.next();
-		System.out.println("Unesite godiste vozila: ");
-		int godiste= s.nextInt();
-		System.out.println("Unesite kubikazu vozila: ");
-		int kubikazaMotora= s.nextInt();
-		System.out.println("Unesite snagu vozila: ");
-		int snagaMotora= s.nextInt();
-		System.out.println("Unesite gorivo vozila: ");
-		String gorivo= s.next();
-		s.hasNextLine();
-		
-		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/automobili.txt");
-		String sadrzaj =  id + "|" + vlasnik + "|" + marka + "|" +  model + "|" + godiste + "|" + kubikazaMotora + "|" + snagaMotora + "|" + gorivo;
-
-		s.close();
-		
-		try {
-			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/automobili.txt");
-			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
-			writer.write(stariSadrzaj + sadrzaj);
-			writer.close();
-		}
-		catch(IOException e) {
-			System.out.println("Greska!");
-
-		}
-	}
-
-	
-	public static void ucitajAutomobile() {
-		ArrayList<Automobil> automobili = new ArrayList<Automobil>();
-		try {
-			File automobiliFile = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/automobili.txt");
-			BufferedReader reader = new BufferedReader(new FileReader(automobiliFile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] lineSplit = line.split("\\|");
-				String id = lineSplit[0];
-				String vlasnikID = lineSplit[1];
-				Korisnici k = new Korisnici();
-				Musterija vlasnik = k.nadjiMusterijuPoID(vlasnikID);
-//				Musterija vlasnik1 = Musterija.parse(vlasnik);
- 				String marka = lineSplit[2];
-				String model= lineSplit[3];
-				String godiste = lineSplit[4];
-				int godisteInt= Integer.parseInt(godiste);
-				String kubikazaMotora = lineSplit[5];
-				int kubikazaMotoraInt= Integer.parseInt(kubikazaMotora);
-				String snagaMotora = lineSplit[6];
-				int snagaMotoraInt= Integer.parseInt(snagaMotora);
-				String gorivo = lineSplit[7];
-
-				Automobil a= new Automobil(id,vlasnik, marka, model, godisteInt, kubikazaMotoraInt, snagaMotoraInt, gorivo);
-				automobili.add(a);
-				System.out.println(id + " " + vlasnik);
-				
-			}
-			reader.close();
-		} catch (IOException e) {
-			System.out.println("Greska prilikom ucitavanja datoteke: " + e.getMessage());
-		}
-	}
-	
-
-		
 }
 

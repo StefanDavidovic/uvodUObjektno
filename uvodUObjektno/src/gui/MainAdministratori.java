@@ -1,10 +1,16 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import component.Korisnici;
+import model.Administrator;
+import model.Musterija;
 import model.Osoba;
 import model.Servis;
 
@@ -20,21 +26,22 @@ public class MainAdministratori extends JFrame {
 	private JMenuItem musterijeItem = new JMenuItem("Musterije");
 	private JMenu automobiliMenu = new JMenu("Automobili");
 	
-	private Osoba prijavljeni;
-	private Servis servis;
+	private Korisnici korisnici;
+	private Administrator administratori;
+	private Musterija musterija;
+
 	
-	
-	public MainAdministratori(Osoba prijavljeni, Servis servis) {
-		this.prijavljeni = prijavljeni;
-		this.servis = servis;
-		setTitle("Prijavljeni korisnik: " + prijavljeni.getKorisnickoIme());
+	public MainAdministratori(Korisnici korisnici) {
+		this.korisnici = korisnici;
+//		setTitle("Prijavljeni korisnik: " + administratori.getKorisnickoIme());
 		setSize(500, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initMenu();
-//		initActions();
+		initActions();
 	}
+	
 	
 	private void initMenu() {
 		setJMenuBar(mainMenu);
@@ -49,6 +56,34 @@ public class MainAdministratori extends JFrame {
 	}
 	
 	
+	
+	private void initActions() {
+		adminiItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazAdmina pa = new PrikazAdmina(korisnici);
+				pa.setVisible(true);
+			}
+		});
+		
+		musterijeItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazMusterija pm = new PrikazMusterija(korisnici);
+				pm.setVisible(true);
+			}
+		});
+		
+		serviseriItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazServisera ps = new PrikazServisera(korisnici);
+				ps.setVisible(true);
+			}
+		});
+	
+	}
+	
+	
 }
-
 

@@ -29,7 +29,6 @@ public class LogInProzor extends JFrame {
 	private JButton btnOk = new JButton("OK");
 	private JButton btnCancel = new JButton("Cancel");
 
-	private Servis servis;
 	private Korisnici korisnici;
 
 	public LogInProzor(Korisnici korisnici) {
@@ -83,7 +82,8 @@ public class LogInProzor extends JFrame {
 								JOptionPane.WARNING_MESSAGE);
 					} else if (prijavljeni instanceof Musterija) {
 						
-						MainMusterija mm = new MainMusterija(prijavljeni, servis);
+						Musterija musterija = korisnici.nadjiMusterijuPoID(prijavljeni.getId());
+						MainMusterija mm = new MainMusterija(korisnici ,musterija);
 						mm.setVisible(true);
 						System.out.println("OVO je musterija");
 						
@@ -92,23 +92,25 @@ public class LogInProzor extends JFrame {
 
 					} else if (prijavljeni instanceof Administrator) {
 						
-						MainAdministratori ma = new MainAdministratori(prijavljeni, servis);
+						MainAdministratori ma = new MainAdministratori(korisnici);
 						ma.setVisible(true);
 						System.out.println("Ovo je Administrator");
 						
 						LogInProzor.this.dispose();
 						LogInProzor.this.setVisible(false);
-
-					} else if (prijavljeni instanceof Serviser) {
-						
-						MainServiseri ms = new MainServiseri(prijavljeni, servis);
-						ms.setVisible(true);
-						System.out.println("Ovo je serviser");
-						
-						LogInProzor.this.dispose();
-						LogInProzor.this.setVisible(false);
-
 					}
+
+//					} else if (prijavljeni instanceof Serviser) {
+//						
+//						Serviser serviser = korisnici.pronadjiServisera(prijavljeni.getId());
+//						MainServiseri ms = new MainServiseri(korisnici,serviser);
+//						ms.setVisible(true);
+//						System.out.println("Ovo je serviser");
+//						
+//						LogInProzor.this.dispose();
+//						LogInProzor.this.setVisible(false);
+//
+//					}
 				}
 			}
 		});

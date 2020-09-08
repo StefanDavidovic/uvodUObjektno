@@ -12,29 +12,29 @@ import java.util.UUID;
 
 public class Serviser extends Osoba {
 	
-	public int plata;
-	public String specijalizacija;
+	public double plata;
+	public ServiserSpecijalizacija specijalizacija;
 	
-	public Serviser(String id, String ime, String prezime, int jmbg, String pol, String broj, String korisnickoIme,
-			String lozinka, int plata, String specijalizacija, boolean obrisan) {
+	public Serviser(String id, String ime, String prezime, int jmbg, Pol pol, String broj, String korisnickoIme,
+			String lozinka, double plata, ServiserSpecijalizacija specijalizacija, boolean obrisan) {
 		super(id, ime, prezime, jmbg, pol, broj, korisnickoIme, lozinka, obrisan);
 		this.plata = plata;
 		this.specijalizacija = specijalizacija;
 	}
 
-	public int getPlata() {
+	public double getPlata() {
 		return plata;
 	}
 
-	public void setPlata(int plata) {
+	public void setPlata(double plata) {
 		this.plata = plata;
 	}
 
-	public String getSpecijalizacija() {
+	public ServiserSpecijalizacija getSpecijalizacija() {
 		return specijalizacija;
 	}
 
-	public void setSpecijalizacija(String specijalizacija) {
+	public void setSpecijalizacija(ServiserSpecijalizacija specijalizacija) {
 		this.specijalizacija = specijalizacija;
 	}
 	
