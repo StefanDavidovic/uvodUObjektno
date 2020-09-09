@@ -102,9 +102,9 @@ public class Automobili {
 			File file = new File("src/fajlovi/automobili.txt");
 			String sadrzaj = "";
 			for (Automobil automobil : automobili) {
-				sadrzaj += automobil.getId() + "|" + automobil.getvlasnik() + "|" + automobil.getMarka().ordinal() + "|"
+				sadrzaj += automobil.getId() + "|" + automobil.getvlasnik().getId() + "|" + automobil.getMarka().ordinal() + "|"
 						+ automobil.getModel().ordinal() + "|" + automobil.getGodiste() + "|" + automobil.getKubikazaMotora() + "|"
-						+ automobil.getSnagaMotora() + "|" + automobil.getGorivo().ordinal() + "|" + automobil.isObrisan();
+						+ automobil.getSnagaMotora() + "|" + automobil.getGorivo().ordinal() + "|" + automobil.isObrisan() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(sadrzaj);

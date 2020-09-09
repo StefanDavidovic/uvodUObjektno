@@ -8,8 +8,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import component.Automobili;
 import component.Korisnici;
 import model.Administrator;
+import model.Automobil;
 import model.Musterija;
 import model.Osoba;
 import model.Servis;
@@ -25,14 +27,17 @@ public class MainAdministratori extends JFrame {
 	private JMenuItem serviseriItem = new JMenuItem("Serviseri");
 	private JMenuItem musterijeItem = new JMenuItem("Musterije");
 	private JMenu automobiliMenu = new JMenu("Automobili");
+	private JMenuItem automobiliItem = new JMenuItem("Svi Automobili");
+	private JMenu deloviMenu = new JMenu("Delovi");
+	private JMenuItem deloviItem = new JMenuItem("Svi Delovi");
 	
 	private Korisnici korisnici;
-	private Administrator administratori;
-	private Musterija musterija;
+	private Automobili automobili;
 
 	
-	public MainAdministratori(Korisnici korisnici) {
+	public MainAdministratori(Korisnici korisnici, Automobili automobili) {
 		this.korisnici = korisnici;
+		this.automobili = automobili;
 //		setTitle("Prijavljeni korisnik: " + administratori.getKorisnickoIme());
 		setSize(500, 500);
 		setResizable(false);
@@ -53,6 +58,9 @@ public class MainAdministratori extends JFrame {
 		korisniciMenu.add(serviseriItem);
 		korisniciMenu.add(musterijeItem);
 		mainMenu.add(automobiliMenu);
+		automobiliMenu.add(automobiliItem);
+		mainMenu.add(deloviMenu);
+		deloviMenu.add(deloviItem);
 	}
 	
 	
@@ -79,6 +87,14 @@ public class MainAdministratori extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PrikazServisera ps = new PrikazServisera(korisnici);
 				ps.setVisible(true);
+			}
+		});
+		
+		automobiliItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazAutomobila pa = new PrikazAutomobila(automobili, korisnici);
+				pa.setVisible(true);
 			}
 		});
 	

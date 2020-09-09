@@ -85,44 +85,4 @@ public class Deo {
 		return sadrzaj;
 	}
 
-		
-		
-	public static void unesiDeolUFajl() {
-		Scanner s = new Scanner(System.in);
-		
-		String id = UUID.randomUUID().toString();
-		System.out.println("Unesite marku: ");
-		String marka= s.next();
-		System.out.println("Unesite model: ");
-		String model = s.next();
-		System.out.println("Unesite naziv: ");
-		String naziv= s.next();
-		System.out.println("Unesite cenu: ");
-		Integer cena= s.nextInt();
-
-			
-		String stariSadrzaj = ucitajIzFajla("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/delovi.txt");
-		String sadrzaj =  id + "|" + marka+ "|" + model + "|" +  naziv + "|" + cena+ "|" ;
-			
-		s.close();
-			
-		try {
-			File upisUFajl = new File("/home/stefan/git/uvodUObjektnoo/uvodUObjektno/src/fajlovi/delovi.txt");
-			BufferedWriter writer = new BufferedWriter(new FileWriter(upisUFajl));
-			writer.write(stariSadrzaj + sadrzaj);
-			writer.close();
-		}catch(IOException e) {
-			System.out.println("Greska!");
-
-		}
-	}
-	
-}
-
-class test5 {
-	public static void main(String[] args){
-//		Deo d = new Deo(111, "BMW", "320d", "Amortizer", 2500);
-//		System.out.println(d.toFile());
-		Deo.unesiDeolUFajl();
-	}
 }

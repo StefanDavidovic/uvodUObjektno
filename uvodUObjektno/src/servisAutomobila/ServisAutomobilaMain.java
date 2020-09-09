@@ -26,7 +26,7 @@ public class ServisAutomobilaMain {
 		automobili.ucitajAutomobile(korisnici);
 		
 		
-		LogInProzor lp = new LogInProzor(korisnici);
+		LogInProzor lp = new LogInProzor(korisnici, automobili);
 		lp.setVisible(true);
 		
 		
