@@ -141,20 +141,14 @@ public class prikazDelova extends JFrame {
 				}else {
 					String deoID = tableModel.getValueAt(red, 0).toString();
 					Deo deo = delovi.pronadjiDeo(deoID);
-					if (deo.getNaziv().contains("Leva Strana") || deo.getNaziv().contains("Leva Strana")) {
-						String[] nazivi = deo.getNaziv().split("\\-");
-						String promenjeni = "";
-						if(nazivi[1].trim().equals("Leva Strana")) promenjeni = nazivi + "-" + "Desna Strana";
-						else promenjeni = nazivi + "-" + "Leva Strana";
+					SimetricniDeo sm = new SimetricniDeo(delovi, deo);
+					sm.setVisible(true);
 					
 				}
 			}
-			}
-			});
-		}
-	
+		});
+	}
 }
-	
 
 
 

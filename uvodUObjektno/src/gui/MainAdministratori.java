@@ -14,6 +14,7 @@ import component.Korisnici;
 import component.Servisi;
 import model.Administrator;
 import model.Automobil;
+import model.Deo;
 import model.Musterija;
 import model.Osoba;
 import model.Servis;
@@ -106,7 +107,7 @@ public class MainAdministratori extends JFrame {
 		deloviItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				prikazDelova pd = new prikazDelova(delovi, korisnici);
+				prikazDelova pd = new prikazDelova(delovi,korisnici);
 				pd.setVisible(true);
 			}
 		});

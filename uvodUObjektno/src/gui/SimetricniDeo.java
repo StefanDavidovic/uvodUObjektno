@@ -11,18 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import component.Automobili;
 import component.Delovi;
-import component.Korisnici;
-import model.Automobil;
 import model.Deo;
-import model.Gorivo;
 import model.MarkaAutomobila;
 import model.ModelAutomobila;
-import model.Musterija;
 import net.miginfocom.swing.MigLayout;
 
-public class UnosDelova extends JFrame {
+public class SimetricniDeo extends JFrame {
 	
 	private JLabel lblID = new JLabel("ID");
 	private JTextField txtID = new JTextField(20);
@@ -49,11 +44,11 @@ public class UnosDelova extends JFrame {
 	private Deo deo;
 	
 	
-	public UnosDelova(Delovi delovi, Deo deo ) {
+	public SimetricniDeo(Delovi delovi, Deo deo ) {
 		this.delovi = delovi;
 		this.deo = deo;
 		if(deo == null) {
-			setTitle("Dodavanje automobila");
+			setTitle("Dodavanje delova");
 		}else {
 			setTitle("Izmena podataka - " + deo.getId());
 		}
@@ -105,31 +100,24 @@ public class UnosDelova extends JFrame {
 					MarkaAutomobila marka = (MarkaAutomobila)cbMarka.getSelectedItem();
 					ModelAutomobila model = (ModelAutomobila)cbModel.getSelectedItem();
 					String naziv = txtNaziv.getText().trim();
-					if(checkbox1.isSelected()){
-						naziv = txtNaziv.getText().trim() + "-" + "Leva Strana";
-					}
-					else if(checkbox2.isSelected()){
-						naziv = txtNaziv.getText().trim() + "-" + "Desna Strana";
-					}
-					else{
-						naziv = txtNaziv.getText().trim();
-					}
 					double cena = Double.parseDouble(txtCena.getText().trim());
 					
-					if(deo == null) { 
-						Deo deo = new Deo(id, marka, model, naziv , cena, false);
-						delovi.dodajDeo(deo);
-					}
-					else {
-						deo.setMarka(marka);
-						deo.setModel(model);
-						deo.setNaziv(naziv);
-						deo.setCena(cena);
-					}
-					
-					delovi.snimiDelove();
-					UnosDelova.this.dispose();
-					UnosDelova.this.setVisible(false);
+//					if(deo == null) { 
+//						Deo deo = new Deo(id, marka, model, naziv , cena, false);
+//						delovi.dodajDeo(deo);
+//					}
+					if (deo.getNaziv().contains("Leva Strana") || deo.getNaziv().contains("Leva Strana")) {
+						String[] nazivi = deo.getNaziv().split("\\-");
+						String promenjeni = "";
+						if(nazivi[1].trim().equals("Leva Strana")) promenjeni = nazivi[0] + "-" + "Desna Strana";
+						else promenjeni = nazivi[0] + "-" + "Leva Strana";
+						Deo noviDeo = new Deo(id, marka, model, promenjeni, cena, false);
+						delovi.dodajDeo(noviDeo);
+						delovi.snimiDelove();
+						SimetricniDeo.this.dispose();
+						SimetricniDeo.this.setVisible(false);
+					}else JOptionPane.showMessageDialog(null, "Ne mozete kreirati simetrican deo ako ne postoji.", "Greska",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			}
 			
@@ -184,5 +172,6 @@ public class UnosDelova extends JFrame {
 		}
 		return ok;
 	}
+
 
 }
