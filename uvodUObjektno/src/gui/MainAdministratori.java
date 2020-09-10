@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import component.Automobili;
 import component.Delovi;
 import component.Korisnici;
+import component.Servisi;
 import model.Administrator;
 import model.Automobil;
 import model.Musterija;
@@ -21,8 +22,8 @@ public class MainAdministratori extends JFrame {
 	
 	private JMenuBar mainMenu = new JMenuBar();
 	private JMenu sevisiMenu = new JMenu("Servisi");
-	private JMenuItem zakazaniItem = new JMenuItem("Zakazani");
-	private JMenuItem zakaziSevisItem = new JMenuItem("Zakazi");
+	private JMenuItem servisneKnjiziceItem = new JMenuItem("ServisneKnjizice");
+	private JMenuItem zakaziSevisItem = new JMenuItem("Servisi");
 	private JMenu korisniciMenu = new JMenu("Korisnici");
 	private JMenuItem adminiItem = new JMenuItem("Administratori");
 	private JMenuItem serviseriItem = new JMenuItem("Serviseri");
@@ -35,12 +36,14 @@ public class MainAdministratori extends JFrame {
 	private Korisnici korisnici;
 	private Automobili automobili;
 	private Delovi delovi;
+	private Servisi servisi;
 
 	
-	public MainAdministratori(Korisnici korisnici, Automobili automobili, Delovi delovi) {
+	public MainAdministratori(Korisnici korisnici, Automobili automobili, Delovi delovi, Servisi servisi) {
 		this.korisnici = korisnici;
 		this.automobili = automobili;
 		this.delovi = delovi;
+		this.servisi = servisi;
 		setSize(500, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -53,7 +56,7 @@ public class MainAdministratori extends JFrame {
 	private void initMenu() {
 		setJMenuBar(mainMenu);
 		mainMenu.add(sevisiMenu);
-		sevisiMenu.add(zakazaniItem);
+		sevisiMenu.add(servisneKnjiziceItem);
 		sevisiMenu.add(zakaziSevisItem);
 		mainMenu.add(korisniciMenu);
 		korisniciMenu.add(adminiItem);
@@ -105,6 +108,22 @@ public class MainAdministratori extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				prikazDelova pd = new prikazDelova(delovi, korisnici);
 				pd.setVisible(true);
+			}
+		});
+		
+		zakaziSevisItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazServisa ps = new PrikazServisa(servisi, korisnici, automobili);
+				ps.setVisible(true);
+			}
+		});
+		
+		servisneKnjiziceItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazServisnihKnjizica psk = new PrikazServisnihKnjizica(delovi ,automobili, servisi);
+				psk.setVisible(true);
 			}
 		});
 	

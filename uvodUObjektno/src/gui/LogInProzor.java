@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import component.Automobili;
 import component.Delovi;
 import component.Korisnici;
+import component.Servisi;
 import gui.MainAdministratori;
 import model.Administrator;
 import model.Musterija;
@@ -34,11 +35,13 @@ public class LogInProzor extends JFrame {
 	private Korisnici korisnici;
 	private Automobili automobili;
 	private Delovi delovi;
+	private Servisi servisi;
 
-	public LogInProzor(Korisnici korisnici, Automobili automobili, Delovi delovi) {
+	public LogInProzor(Korisnici korisnici, Automobili automobili, Delovi delovi, Servisi servisi) {
 		this.korisnici = korisnici;
 		this.automobili = automobili;
 		this.delovi = delovi;
+		this.servisi = servisi;
 		setTitle("Prijava");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -98,7 +101,7 @@ public class LogInProzor extends JFrame {
 
 					} else if (prijavljeni instanceof Administrator) {
 						
-						MainAdministratori ma = new MainAdministratori(korisnici, automobili, delovi);
+						MainAdministratori ma = new MainAdministratori(korisnici, automobili, delovi, servisi);
 						ma.setVisible(true);
 						System.out.println("Ovo je Administrator");
 						

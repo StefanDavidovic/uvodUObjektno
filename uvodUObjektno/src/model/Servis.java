@@ -6,17 +6,24 @@ import java.util.List;
 public class Servis {
 	
 	public String id;
+	public Automobil automobil;
+	public Serviser serviser;
 	public String termin;
 	public String opis;
 	public ArrayList<Deo> listadelova;
-	public String statusServisa;
+	public StatusServisa statusServisa;
+	public boolean obrisan;
 	
-	public Servis(String id, String termin, String opis, ArrayList<Deo> listadelova, String statusServisa) {
+	public Servis(String id, Automobil automobil, Serviser serviser , String termin, String opis, ArrayList<Deo> listadelova, StatusServisa statusServisa, boolean obrisan) {
 		this.id = id;
+		this.automobil = automobil;
+		this.serviser = serviser;
 		this.termin = termin;
 		this.opis = opis;
 		this.listadelova = listadelova;
 		this.statusServisa = statusServisa;
+		this.obrisan = obrisan;
+		
 	}
 
 	public String getId() {
@@ -25,6 +32,22 @@ public class Servis {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public Automobil getAutomobil() {
+		return automobil;
+	}
+
+	public void setAutomobil(Automobil automobil) {
+		this.automobil = automobil;
+	}
+	
+	public Serviser getServiser() {
+		return serviser;
+	}
+
+	public void setServiser(Serviser serviser) {
+		this.serviser = serviser;
 	}
 
 	public String getTermin() {
@@ -51,16 +74,24 @@ public class Servis {
 		this.listadelova = listadelova;
 	}
 
-	public String getStatusServisa() {
+	public StatusServisa getStatusServisa() {
 		return statusServisa;
 	}
 
-	public void setStatusServisa(String statusServisa) {
+	public void setStatusServisa(StatusServisa statusServisa) {
 		this.statusServisa = statusServisa;
 	}
 	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+	
 	public String toFile() {
-		return id + "|" + termin + "|" + opis + "|" + listadelova + "|" + statusServisa + "|";
+		return id + "|" + termin + "|" + opis + "|" + "|" + statusServisa + "|" + obrisan;
 	}
 }
 
