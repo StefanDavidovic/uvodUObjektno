@@ -12,17 +12,19 @@ import java.util.UUID;
 public class Deo {
 	
 	public String id;
-	public Automobil marka;
-	public Automobil model;
+	public MarkaAutomobila marka;
+	public ModelAutomobila model;
 	public String naziv;
-	public float cena;
+	public double cena;
+	public boolean obrisan;
 	
-	public Deo(String id, Automobil marka, Automobil model, String naziv, float cena) {
+	public Deo(String id, MarkaAutomobila marka, ModelAutomobila model, String naziv, double cena,  boolean obrisan) {
 		this.id = id;
 		this.marka = marka;
 		this.model = model;
 		this.naziv = naziv;
 		this.cena = cena;
+		this.obrisan = obrisan;
 	}
 	
 	public String getId() {
@@ -31,19 +33,19 @@ public class Deo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Automobil getMarka() {
+	public MarkaAutomobila getMarka() {
 		return marka;
 	}
 
-	public void setMarka(Automobil marka) {
+	public void setMarka(MarkaAutomobila marka) {
 		this.marka = marka;
 	}
 
-	public Automobil getModel() {
+	public ModelAutomobila getModel() {
 		return model;
 	}
 
-	public void setModel(Automobil model) {
+	public void setModel(ModelAutomobila model) {
 		this.model = model;
 	}
 
@@ -55,16 +57,25 @@ public class Deo {
 		this.naziv = naziv;
 	}
 
-	public float getCena() {
+	public double getCena() {
 		return cena;
 	}
 
-	public void setCena(float cena) {
+	public void setCena(double cena) {
 		this.cena = cena;
 	}
 	
-	public String toFile() {
-		return id + "|" + marka + "|" + model + "|" + naziv + "|" + cena + "|";
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+	
+	@Override
+	public String toString() {
+		return id + "|" + marka + "|" + model + "|" + naziv + "|" + cena + "|" + obrisan;
 	}
 	
 	public static String ucitajIzFajla(String fajl) {

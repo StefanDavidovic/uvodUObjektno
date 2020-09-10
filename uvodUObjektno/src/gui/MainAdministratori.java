@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import component.Automobili;
+import component.Delovi;
 import component.Korisnici;
 import model.Administrator;
 import model.Automobil;
@@ -33,12 +34,13 @@ public class MainAdministratori extends JFrame {
 	
 	private Korisnici korisnici;
 	private Automobili automobili;
+	private Delovi delovi;
 
 	
-	public MainAdministratori(Korisnici korisnici, Automobili automobili) {
+	public MainAdministratori(Korisnici korisnici, Automobili automobili, Delovi delovi) {
 		this.korisnici = korisnici;
 		this.automobili = automobili;
-//		setTitle("Prijavljeni korisnik: " + administratori.getKorisnickoIme());
+		this.delovi = delovi;
 		setSize(500, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -95,6 +97,14 @@ public class MainAdministratori extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PrikazAutomobila pa = new PrikazAutomobila(automobili, korisnici);
 				pa.setVisible(true);
+			}
+		});
+		
+		deloviItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				prikazDelova pd = new prikazDelova(delovi, korisnici);
+				pd.setVisible(true);
 			}
 		});
 	

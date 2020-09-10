@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import component.Automobili;
+import component.Delovi;
 import component.Korisnici;
 import gui.LogInProzor;
 import model.Administrator;
@@ -20,13 +21,15 @@ public class ServisAutomobilaMain {
 		
 		Korisnici korisnici = new Korisnici();
 		Automobili automobili = new Automobili();
+		Delovi delovi = new Delovi();
 		korisnici.ucitajAdministratore();
 		korisnici.ucitajMusterije();
 		korisnici.ucitajServisere();
 		automobili.ucitajAutomobile(korisnici);
+		delovi.ucitajDelove();
 		
 		
-		LogInProzor lp = new LogInProzor(korisnici, automobili);
+		LogInProzor lp = new LogInProzor(korisnici, automobili, delovi);
 		lp.setVisible(true);
 		
 		

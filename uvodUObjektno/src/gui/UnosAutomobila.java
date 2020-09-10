@@ -113,8 +113,7 @@ public class UnosAutomobila extends JFrame {
 		btnOK.addActionListener((ActionListener) new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				if(validacija()) {
-				if(true) {
+				if(validacija()) {
 					String id = txtID.getText().trim();
 					String korisnickoIme = (String)cbVlasnik.getSelectedItem();
 					Musterija vlasnik = korisnici.nadjiMusteriju(korisnickoIme);
@@ -157,80 +156,50 @@ public class UnosAutomobila extends JFrame {
 		
 	}
 	
-//	private boolean validacija() {
-//		boolean ok = true;
-//		String poruka = "Molimo popravite sledece greske u unosu:\n";
-//		
-//		if(txtID.getText().trim().equals("")) {
-//			poruka += "- Morate uneti ID\n";
-//			ok = false;
-//		}else if(auto == null) {
-//			String id = txtID.getText().trim();
-//			Automobil auto = automobili.pronadjiAutomobil(id);
-//			if(auto != null) {
-//				poruka += "- Automobil sa unetim ID vec postoji\n";
-//				ok = false;
-//			}
-//		}
-//		
-//		try {
-//			Integer.parseInt(txtJMBG.getText().trim());
-//			
-//		}catch (NumberFormatException e) {
-//			poruka += "- JMBG mora biti broj\n";
-//			ok = false;
-//		}
-//		
-//		try {
-//			Double.parseDouble(txtPlata.getText().trim());
-//			
-//		}catch (NumberFormatException e) {
-//			poruka += "- Plata mora biti broj\n";
-//			ok = false;
-//		}
-//		
-//		try {
-//			Integer.parseInt(txtBroj.getText().trim());
-//			
-//		}catch (NumberFormatException e) {
-//			poruka += "- Broj telefona mora biti tipa broj\n";
-//			ok = false;
-//		}
-//		
-//		if(txtIme.getText().trim().equals("")) {
-//			poruka += "- Morate uneti ime\n";
-//			ok = false;
-//		}
-//		
-//		if(txtPrezime.getText().trim().equals("")) {
-//			poruka += "- Morate uneti prezime\n";
-//			ok = false;
-//		}
-//		
-//		if(txtKorisnickoIme.getText().trim().equals("")) {
-//			poruka += "- Unesite korisnicko ime\n";
-//			ok = false;
-//		}else if(prijavljeni == null){
-//			String korisnickoIme = txtKorisnickoIme.getText().trim();
-//			Administrator admin = korisnici.nadjiAdmina(korisnickoIme);
-//			if(admin != null) {
-//				poruka += "- Prodavac sa tim korisnickim imenom vec postoji\n";
-//				ok = false;
-//			}
-//		}
-//		
-//		String lozinka = new String(pfLozinka.getPassword()).trim();
-//		if(lozinka.equals("")) {
-//			poruka += "- Unesite sifru\n";
-//			ok = false;
-//		}
-//		
-//
-//		
-//		if(ok == false) {
-//			JOptionPane.showMessageDialog(null,poruka , "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
-//		}
-//		return ok;
-//	}
+	private boolean validacija() {
+		boolean ok = true;
+		String poruka = "Molimo popravite sledece greske u unosu:\n";
+		
+		if(txtID.getText().trim().equals("")) {
+			poruka += "- Morate uneti ID\n";
+			ok = false;
+		}else if(auto == null) {
+			String id = txtID.getText().trim();
+			Automobil auto = automobili.pronadjiAutomobil(id);
+			if(auto != null) {
+				poruka += "- Automobil sa unetim ID vec postoji\n";
+				ok = false;
+			}
+		}
+		
+		try {
+			Integer.parseInt(txtGodiste.getText().trim());
+			
+		}catch (NumberFormatException e) {
+			poruka += "- Godiste mora biti broj\n";
+			ok = false;
+		}
+		
+		try {
+			Integer.parseInt(txtKubikazaMotora.getText().trim());
+			
+		}catch (NumberFormatException e) {
+			poruka += "- Kubikaza motora mora biti broj\n";
+			ok = false;
+		}
+		
+		try {
+			Integer.parseInt(txtSnagaMotora.getText().trim());
+			
+		}catch (NumberFormatException e) {
+			poruka += "- Snaga motora mora biti broj\n";
+			ok = false;
+		}
+		
+		if(ok == false) {
+			JOptionPane.showMessageDialog(null,poruka , "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+		}
+		return ok;
+	}
 
 }
