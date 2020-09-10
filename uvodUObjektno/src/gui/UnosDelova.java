@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,6 +35,9 @@ public class UnosDelova extends JFrame {
 	
 	private JLabel lblNaziv = new JLabel("Naziv");
 	private JTextField txtNaziv = new JTextField(20);
+	
+	JCheckBox checkbox1 = new JCheckBox("LEVI");  
+	JCheckBox checkbox2 = new JCheckBox("DESNI");  
 	
 	private JLabel lblCena = new JLabel("Cena");
 	private JTextField txtCena = new JTextField(20);
@@ -70,6 +74,8 @@ public class UnosDelova extends JFrame {
 			popuniPolja();
 		}
 		
+
+		
 		
 		add(lblID);
 		add(txtID);
@@ -81,11 +87,61 @@ public class UnosDelova extends JFrame {
 		add(txtNaziv);
 		add(lblCena);
 		add(txtCena);
+		add(checkbox1);
+		add(checkbox2);
 		
 		add(new JLabel());
 		add(btnOK, "split 2");
 		add(btnCancel);
 	}
+	
+	
+//	public static void kreirajSimetricanDeo(Deo deo) {
+//		
+//		btnOK.addActionListener((ActionListener) new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if(validacija()) {
+//					
+//					if (deo.getNaziv().contains("Leva Strana") || deo.getNaziv().contains("Leva Strana")) {
+//						String[] nazivi = deo.getNaziv().split("\\-");
+//						String promenjeni = "";
+//						if(nazivi[1].trim().equals("Leva Strana")) promenjeni = nazivi + "-" + "Desna Strana";
+//						else promenjeni = nazivi + "-" + "Leva Strana";
+////					String id = txtID.getText().trim();
+////					MarkaAutomobila marka = (MarkaAutomobila)cbMarka.getSelectedItem();
+////					ModelAutomobila model = (ModelAutomobila)cbModel.getSelectedItem();
+////					String naziv = txtNaziv.getText().trim();
+////					double cena = Double.parseDouble(txtCena.getText().trim());
+////
+////					if(deo == null) { 
+////						Deo deo = new Deo(id, marka, model, naziv , cena, false);
+////						delovi.dodajDeo(deo);
+////						if (deo.getNaziv().contains("Leva Strana") || deo.getNaziv().contains("Leva Strana")) {
+////							String[] nazivi = deo.getNaziv().split("\\-");
+////							String promenjeni = "";
+////							if(nazivi[1].trim().equals("Leva Strana")) promenjeni = nazivi + "-" + "Desna Strana";
+////							else promenjeni = nazivi + "-" + "Leva Strana";
+////									
+////						}
+////					}else {
+//						
+////						deo.setMarka(marka);
+////						deo.setModel(model);
+////						deo.setNaziv(naziv);
+////						deo.setCena(cena);
+//
+//					}
+//					delovi.snimiDelove();
+//					UnosDelova.this.dispose();
+//					UnosDelova.this.setVisible(false);
+//				}
+//			}
+//		});
+//			
+//			
+//		}
+	
 	
 	private void initActions() {
 		btnOK.addActionListener((ActionListener) new ActionListener() {
@@ -96,6 +152,13 @@ public class UnosDelova extends JFrame {
 					MarkaAutomobila marka = (MarkaAutomobila)cbMarka.getSelectedItem();
 					ModelAutomobila model = (ModelAutomobila)cbModel.getSelectedItem();
 					String naziv = txtNaziv.getText().trim();
+					if (checkbox1.isSelected()) {
+						 naziv = txtNaziv.getText().trim() + " Leva Strana";
+					}
+					else if(checkbox2.isSelected()) {
+						 naziv = txtNaziv.getText().trim() + " Desna Strana";
+					}
+
 					double cena = Double.parseDouble(txtCena.getText().trim());
 
 					if(deo == null) { 

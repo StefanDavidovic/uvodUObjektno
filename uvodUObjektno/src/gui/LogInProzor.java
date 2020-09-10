@@ -89,15 +89,15 @@ public class LogInProzor extends JFrame {
 					if (prijavljeni == null) {
 						JOptionPane.showMessageDialog(null, "Pogrešni login podaci.", "Greška",
 								JOptionPane.WARNING_MESSAGE);
-					} else if (prijavljeni instanceof Musterija) {
-						
-						Musterija musterija = korisnici.nadjiMusterijuPoID(prijavljeni.getId());
-						MainMusterija mm = new MainMusterija(korisnici ,musterija);
-						mm.setVisible(true);
-						System.out.println("OVO je musterija");
-						
-						LogInProzor.this.dispose();
-						LogInProzor.this.setVisible(false);
+//					} else if (prijavljeni instanceof Musterija) {
+//						
+//						Musterija musterija = korisnici.nadjiMusterijuPoID(prijavljeni.getId());
+//						MainMusterija mm = new MainMusterija(musterija, korisnici ,servisi, automobili);
+//						mm.setVisible(true);
+//						System.out.println("OVO je musterija");
+//						
+//						LogInProzor.this.dispose();
+//						LogInProzor.this.setVisible(false);
 
 					} else if (prijavljeni instanceof Administrator) {
 						
@@ -107,19 +107,18 @@ public class LogInProzor extends JFrame {
 						
 						LogInProzor.this.dispose();
 						LogInProzor.this.setVisible(false);
-					}
+					
 
-//					} else if (prijavljeni instanceof Serviser) {
-//						
-//						Serviser serviser = korisnici.pronadjiServisera(prijavljeni.getId());
-//						MainServiseri ms = new MainServiseri(korisnici,serviser);
-//						ms.setVisible(true);
-//						System.out.println("Ovo je serviser");
-//						
-//						LogInProzor.this.dispose();
-//						LogInProzor.this.setVisible(false);
-//
-//					}
+					} else if (prijavljeni instanceof Serviser) {
+						Serviser serviser = korisnici.pronadjiServisera(prijavljeni.getId());
+						MainServiseri ms = new MainServiseri(serviser, korisnici,automobili,servisi);
+						ms.setVisible(true);
+						System.out.println("Ovo je serviser");
+						
+						LogInProzor.this.dispose();
+						LogInProzor.this.setVisible(false);
+
+					}
 				}
 			}
 		});

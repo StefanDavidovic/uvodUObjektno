@@ -69,6 +69,8 @@ public class PrikazServisnihKnjizica extends JFrame {
 			ServisnaKnjizica servisnaKnjizica = servisi.sveNeobrisaneServisneKnjizice().get(i);
 			sadrzaj[i][0] = servisnaKnjizica.getId();
 			sadrzaj[i][1] = servisnaKnjizica.getAutomobili();
+			sadrzaj[i][2] = servisnaKnjizica.getServisi();
+			
 
 
 		}
@@ -108,13 +110,13 @@ public class PrikazServisnihKnjizica extends JFrame {
 			}
 		});
 		
-//		btnAdd.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				UnosDelova ud = new UnosDelova(delovi, null);
-//				ud.setVisible(true);
-//			}
-//		});
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UnosServisneKnjizice ud = new UnosServisneKnjizice(null, servisi, automobili);
+				ud.setVisible(true);
+			}
+		});
 //		
 //		btnEdit.addActionListener(new ActionListener() {
 //			@Override

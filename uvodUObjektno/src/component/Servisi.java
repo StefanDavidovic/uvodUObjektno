@@ -105,10 +105,10 @@ public class Servisi {
 				
 				String automobilID = lineSplit[1];
 				Automobil automobil = automobili.pronadjiAutomobil(automobilID);
-				
+			
 				ArrayList<Servis> listaServisa = new ArrayList<Servis>();
 
-				String obrisanBool = lineSplit[2];
+				String obrisanBool = lineSplit[3];
 				boolean obrisan = Boolean.parseBoolean(obrisanBool);
 
 				ServisnaKnjizica servisnaKnjizica= new ServisnaKnjizica(id, automobil, listaServisa , obrisan);

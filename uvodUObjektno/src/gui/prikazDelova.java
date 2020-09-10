@@ -26,6 +26,7 @@ public class prikazDelova extends JFrame {
 	private JButton btnAdd = new JButton();
 	private JButton btnEdit = new JButton();
 	private JButton btnDelete = new JButton();
+	private JButton btnSymetric = new JButton();
 	
 	private DefaultTableModel tableModel;
 	private JTable deloviTabela;
@@ -55,6 +56,7 @@ public class prikazDelova extends JFrame {
 		mainToolbar.add(btnAdd);
 		mainToolbar.add(btnEdit);
 		mainToolbar.add(btnDelete);
+		mainToolbar.add(btnSymetric);
 		add(mainToolbar, BorderLayout.NORTH);
 		
 		mainToolbar.setFloatable(false);
@@ -129,7 +131,30 @@ public class prikazDelova extends JFrame {
 				}
 			}
 		});
-	}
-
-
+		
+		btnSymetric.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = deloviTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String deoID = tableModel.getValueAt(red, 0).toString();
+					Deo deo = delovi.pronadjiDeo(deoID);
+					if (deo.getNaziv().contains("Leva Strana") || deo.getNaziv().contains("Leva Strana")) {
+						String[] nazivi = deo.getNaziv().split("\\-");
+						String promenjeni = "";
+						if(nazivi[1].trim().equals("Leva Strana")) promenjeni = nazivi + "-" + "Desna Strana";
+						else promenjeni = nazivi + "-" + "Leva Strana";
+					
+				}
+			}
+			}
+			});
+		}
+	
 }
+	
+
+
+
