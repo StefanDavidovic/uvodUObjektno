@@ -25,7 +25,6 @@ public class PrikazServisnihKnjizica extends JFrame {
 	
 	private JToolBar mainToolbar = new JToolBar();
 	private JButton btnAdd = new JButton();
-	private JButton btnEdit = new JButton();
 	private JButton btnDelete = new JButton();
 	
 	private DefaultTableModel tableModel;
@@ -50,13 +49,10 @@ public class PrikazServisnihKnjizica extends JFrame {
 	private void initGUI() {
 		ImageIcon addIcon = new ImageIcon(getClass().getResource("/icons/Add.gif"));
 		btnAdd.setIcon(addIcon);
-		ImageIcon editIcon = new ImageIcon(getClass().getResource("/icons/Modify.gif"));
-		btnEdit.setIcon(editIcon);
 		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/icons/Delete.gif"));
 		btnDelete.setIcon(deleteIcon);
 		
 		mainToolbar.add(btnAdd);
-		mainToolbar.add(btnEdit);
 		mainToolbar.add(btnDelete);
 		add(mainToolbar, BorderLayout.NORTH);
 		
@@ -117,21 +113,7 @@ public class PrikazServisnihKnjizica extends JFrame {
 				ud.setVisible(true);
 			}
 		});
-//		
-//		btnEdit.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				int red = deloviTabela.getSelectedRow();
-//				if(red == -1) {
-//					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-//				}else {
-//					String deoID = tableModel.getValueAt(red, 0).toString();
-//					Deo deo = delovi.pronadjiDeo(deoID);
-//					UnosDelova ud = new UnosDelova(delovi , deo);
-//					ud.setVisible(true);
-//				}
-//			}
-//		});
+
 	}
 
 

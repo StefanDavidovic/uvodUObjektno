@@ -111,7 +111,7 @@ public class LogInProzor extends JFrame {
 
 					} else if (prijavljeni instanceof Serviser) {
 						Serviser serviser = korisnici.pronadjiServisera(prijavljeni.getId());
-						MainServiseri ms = new MainServiseri(serviser, korisnici,automobili,servisi);
+						MainServiseri ms = new MainServiseri(serviser, korisnici,automobili,servisi, delovi);
 						ms.setVisible(true);
 						System.out.println("Ovo je serviser");
 						

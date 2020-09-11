@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import component.Automobili;
+import component.Delovi;
 import component.Korisnici;
 import component.Servisi;
 import model.Osoba;
@@ -20,20 +21,21 @@ public class MainServiseri extends JFrame {
 	private JMenuBar mainMenu = new JMenuBar();
 	private JMenu sevisiMenu = new JMenu("Servisi");
 	private JMenuItem zakazaniItem = new JMenuItem("Zakazani");
-	private JMenuItem zakaziSevisItem = new JMenuItem("Zakazi");
-	private JMenu automobiliMenu = new JMenu("Automobili");
+	private JMenu deloviMenu = new JMenu("Delovi");
+	private JMenuItem deloviItem = new JMenuItem("Delovi");
 	
 	private Korisnici korisnici;
 	private Automobili automobili;
 	private Servisi servisi;
 	private Serviser prijavljeni;
+	private Delovi delovi;
 	
-	
-	public MainServiseri(Serviser prijavljeni, Korisnici korisnici, Automobili automobili, Servisi servisi) {
+	public MainServiseri(Serviser prijavljeni, Korisnici korisnici, Automobili automobili, Servisi servisi, Delovi delovi) {
 		this.korisnici = korisnici;
 		this.automobili = automobili;
 		this.servisi = servisi;
 		this.prijavljeni = prijavljeni;
+		this.delovi = delovi;
 		setTitle("Prijavljeni korisnik: " + prijavljeni.getKorisnickoIme());
 		setSize(500, 500);
 		setResizable(false);
@@ -47,8 +49,8 @@ public class MainServiseri extends JFrame {
 		setJMenuBar(mainMenu);
 		mainMenu.add(sevisiMenu);
 		sevisiMenu.add(zakazaniItem);
-		sevisiMenu.add(zakaziSevisItem);
-		mainMenu.add(automobiliMenu);
+		mainMenu.add(deloviMenu);
+		deloviMenu.add(deloviItem);
 	}
 	
 	private void initActions() {
@@ -56,6 +58,14 @@ public class MainServiseri extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ServisiZaServisere pa = new ServisiZaServisere(prijavljeni, servisi, korisnici ,automobili);
+				pa.setVisible(true);
+			}
+		});
+		
+		deloviItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				prikazDelova pa = new prikazDelova(delovi, korisnici);
 				pa.setVisible(true);
 			}
 		});

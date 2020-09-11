@@ -52,6 +52,8 @@ public class prikazDelova extends JFrame {
 		btnEdit.setIcon(editIcon);
 		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/icons/Delete.gif"));
 		btnDelete.setIcon(deleteIcon);
+		ImageIcon symetricIcon = new ImageIcon(getClass().getResource("/icons/Left-right.gif"));
+		btnSymetric.setIcon(symetricIcon);
 		
 		mainToolbar.add(btnAdd);
 		mainToolbar.add(btnEdit);
